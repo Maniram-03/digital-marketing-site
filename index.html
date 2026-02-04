@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStore | Premium Digital Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-black: #1d1d1f;
+            --apple-grey: #f5f5f7;
+            --apple-blue: #0071e3;
+            --text-grey: #6e6e73;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #fff; color: var(--apple-black); line-height: 1.5; scroll-behavior: smooth; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 0 8%;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--apple-black); }
+        .apple-svg { width: 35px; height: 35px; fill: var(--apple-black); }
+        .brand-name { font-weight: 600; font-size: 26px; letter-spacing: -0.5px; }
+
+        nav ul { list-style: none; display: flex; gap: 35px; }
+        nav ul li a { text-decoration: none; color: var(--apple-black); font-size: 14px; font-weight: 500; opacity: 0.8; transition: 0.3s; }
+        nav ul li a:hover { opacity: 1; color: var(--apple-blue); }
+
+        /* --- HERO --- */
+        .hero { text-align: center; padding: 80px 20px; }
+        .hero h1 { font-size: 68px; font-weight: 600; letter-spacing: -3px; margin-bottom: 10px; }
+        .hero p { font-size: 26px; color: var(--text-grey); margin-bottom: 25px; }
+        .hero-btn {
+            display: inline-block; background: var(--apple-blue); color: white;
+            padding: 14px 30px; border-radius: 30px; text-decoration: none;
+            font-weight: 500; margin-bottom: 40px; transition: 0.3s;
+        }
+        .hero-img { width: 100%; max-width: 700px; height: auto; border-radius: 30px; }
+
+        /* --- COLLECTION --- */
+        .collection { padding: 100px 10%; background: var(--apple-grey); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .product-card {
+            background: #fff; border-radius: 28px; padding: 50px 30px; text-align: center;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+        .product-card img { width: 100%; height: 280px; object-fit: contain; margin-bottom: 25px; }
+        .price { font-weight: 600; color: var(--apple-black); font-size: 20px; margin-bottom: 20px; display: block; }
+        .buy-now-btn {
+            display: inline-block; background: var(--apple-black); color: white;
+            padding: 10px 25px; border-radius: 20px; text-decoration: none; cursor: pointer;
+        }
+
+        /* --- CONTACT --- */
+        .contact { padding: 100px 20px; background: #fff; }
+        .form-box { max-width: 500px; margin: 0 auto; }
+        input, select, textarea { width: 100%; padding: 16px; margin-bottom: 15px; border: 1px solid #d2d2d7; border-radius: 12px; font-size: 16px; background: #fbfbfb; }
+        .submit-btn { background: var(--apple-blue); color: white; border: none; padding: 16px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: 600; }
+
+        /* --- MODAL POP-UP --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px);
+            display: none; align-items: center; justify-content: center; z-index: 2000;
+        }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 30px; text-align: center;
+            max-width: 400px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transform: scale(0.8); transition: 0.3s ease-out;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+        .modal-content h2 { font-size: 24px; margin-bottom: 10px; }
+        .modal-content p { color: var(--text-grey); margin-bottom: 30px; }
+        .close-modal-btn {
+            background: var(--apple-blue); color: white; border: none;
+            padding: 12px 30px; border-radius: 20px; cursor: pointer; font-weight: 600; width: 100%;
+        }
+
+        /* --- ABOUT & FOOTER --- */
+        .about-section { padding: 100px 15%; background-color: var(--apple-black); color: #fff; text-align: center; }
+        footer { text-align: center; padding: 60px; font-size: 13px; color: var(--text-grey); background: var(--apple-black); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-area">
+            <svg class="apple-svg" viewBox="0 0 170 170">
+                <path d="M150.37,130.25c-2.45,5.66-5.35,10.87-8.71,15.66c-8.58,12.23-17.67,24.35-31.15,24.63c-13.05,0.27-17.25-7.74-32.25-7.74 c-15,0-19.68,7.47-32.25,8.01c-13.32,0.54-23.27-13.05-31.85-25.44C4.69,130.93-6.49,92.59,4.42,73.19 c5.42-9.66,15.34-15.77,26.15-15.93c12.23-0.21,23.79,8.22,31.3,8.22c7.5,0,21.31-10.16,35.91-8.66 c6.13,0.26,23.32,2.47,34.35,18.59c-0.9,0.54-20.53,11.96-20.31,35.42c0.26,28.21,24.4,37.36,24.73,37.49 C156.41,142.1,152.99,136.21,150.37,130.25z M118.84,28.71c6.51-7.89,10.9-18.85,9.69-29.83c-9.43,0.38-20.84,6.29-27.59,14.18 c-6.05,7.03-11.35,18.25-9.94,29.02C101.41,63.02,112.33,36.6,118.84,28.71z"></path>
+            </svg>
+            <span class="brand-name">iStore</span>
+        </a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#collection">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>iPhone 15 Pro</h1>
+        <p>Titanium. Strong. Light. Pro.</p>
+        <a href="#collection" class="hero-btn">Shop Now</a><br>
+        <img class="hero-img" src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=1200" alt="iPhone 15 Pro">
+    </section>
+
+    <section class="collection" id="collection">
+        <div class="grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=600" alt="iPhone 15 Pro Natural Titanium">
+                <h3>iPhone 15 Pro</h3>
+                <span class="price">From $999</span>
+                <a onclick="selectModel('iPhone 15 Pro')" href="#contact" class="buy-now-btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&q=80&w=600" alt="iPhone 15 Blue">
+                <h3>iPhone 15</h3>
+                <span class="price">From $799</span>
+                <a onclick="selectModel('iPhone 15')" href="#contact" class="buy-now-btn">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?auto=format&fit=crop&q=80&w=600" alt="iPhone 14">
+                <h3>iPhone 14</h3>
+                <span class="price">From $699</span>
+                <a onclick="selectModel('iPhone 14')" href="#contact" class="buy-now-btn">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="form-box">
+            <h2 style="text-align: center; margin-bottom: 20px;">Complete Your Order</h2>
+            <form id="orderForm" onsubmit="handleOrder(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <select id="modelSelect" required>
+                    <option value="">Choose Model</option>
+                    <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+                    <option value="iPhone 15">iPhone 15</option>
+                    <option value="iPhone 14">iPhone 14</option>
+                </select>
+                <textarea rows="4" placeholder="Shipping Address" required></textarea>
+                <button type="submit" class="submit-btn">Place Order Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <span class="modal-icon">✅</span>
+            <h2>Order Placed!</h2>
+            <p>Thank you for shopping with iStore. Our sales team will contact you within 24 hours.</p>
+            <button class="close-modal-btn" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <h2>About iStore Digital</h2>
+        <p>Leading the way in premium mobile retail experiences.</p>
+    </section>
+
+    <footer>&copy; 2026 iStore Digital.</footer>
+
+    <script>
+        function selectModel(name) { document.getElementById('modelSelect').value = name; }
+
+        function handleOrder(e) {
+            e.preventDefault();
+            const modal = document.getElementById('modalOverlay');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.getElementById("orderForm").reset();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+    </script>
+</body>
+</html>
