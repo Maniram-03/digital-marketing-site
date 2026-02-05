@@ -5,194 +5,349 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iStore | Premium Digital Marketing</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --apple-black: #1d1d1f;
-            --apple-grey: #f5f5f7;
-            --apple-blue: #0071e3;
-            --text-grey: #6e6e73;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #fff; color: var(--apple-black); line-height: 1.5; scroll-behavior: smooth; }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding: 0 8%;
-        }
-
-        .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--apple-black); }
-        .apple-svg { width: 35px; height: 35px; fill: var(--apple-black); }
-        .brand-name { font-weight: 600; font-size: 26px; letter-spacing: -0.5px; }
-
-        nav ul { list-style: none; display: flex; gap: 35px; }
-        nav ul li a { text-decoration: none; color: var(--apple-black); font-size: 14px; font-weight: 500; opacity: 0.8; transition: 0.3s; }
-        nav ul li a:hover { opacity: 1; color: var(--apple-blue); }
-
-        /* --- HERO --- */
-        .hero { text-align: center; padding: 80px 20px; }
-        .hero h1 { font-size: 68px; font-weight: 600; letter-spacing: -3px; margin-bottom: 10px; }
-        .hero p { font-size: 26px; color: var(--text-grey); margin-bottom: 25px; }
-        .hero-btn {
-            display: inline-block; background: var(--apple-blue); color: white;
-            padding: 14px 30px; border-radius: 30px; text-decoration: none;
-            font-weight: 500; margin-bottom: 40px; transition: 0.3s;
-        }
-        .hero-img { width: 100%; max-width: 700px; height: auto; border-radius: 30px; }
-
-        /* --- COLLECTION --- */
-        .collection { padding: 100px 10%; background: var(--apple-grey); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .product-card {
-            background: #fff; border-radius: 28px; padding: 50px 30px; text-align: center;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
-        .product-card img { width: 100%; height: 280px; object-fit: contain; margin-bottom: 25px; }
-        .price { font-weight: 600; color: var(--apple-black); font-size: 20px; margin-bottom: 20px; display: block; }
-        .buy-now-btn {
-            display: inline-block; background: var(--apple-black); color: white;
-            padding: 10px 25px; border-radius: 20px; text-decoration: none; cursor: pointer;
-        }
-
-        /* --- CONTACT --- */
-        .contact { padding: 100px 20px; background: #fff; }
-        .form-box { max-width: 500px; margin: 0 auto; }
-        input, select, textarea { width: 100%; padding: 16px; margin-bottom: 15px; border: 1px solid #d2d2d7; border-radius: 12px; font-size: 16px; background: #fbfbfb; }
-        .submit-btn { background: var(--apple-blue); color: white; border: none; padding: 16px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: 600; }
-
-        /* --- MODAL POP-UP --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px);
-            display: none; align-items: center; justify-content: center; z-index: 2000;
-        }
-        .modal-content {
-            background: white; padding: 40px; border-radius: 30px; text-align: center;
-            max-width: 400px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            transform: scale(0.8); transition: 0.3s ease-out;
-        }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .modal-icon { font-size: 50px; margin-bottom: 20px; display: block; }
-        .modal-content h2 { font-size: 24px; margin-bottom: 10px; }
-        .modal-content p { color: var(--text-grey); margin-bottom: 30px; }
-        .close-modal-btn {
-            background: var(--apple-blue); color: white; border: none;
-            padding: 12px 30px; border-radius: 20px; cursor: pointer; font-weight: 600; width: 100%;
-        }
-
-        /* --- ABOUT & FOOTER --- */
-        .about-section { padding: 100px 15%; background-color: var(--apple-black); color: #fff; text-align: center; }
-        footer { text-align: center; padding: 60px; font-size: 13px; color: var(--text-grey); background: var(--apple-black); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
         <a href="#" class="logo-area">
-            <svg class="apple-svg" viewBox="0 0 170 170">
-                <path d="M150.37,130.25c-2.45,5.66-5.35,10.87-8.71,15.66c-8.58,12.23-17.67,24.35-31.15,24.63c-13.05,0.27-17.25-7.74-32.25-7.74 c-15,0-19.68,7.47-32.25,8.01c-13.32,0.54-23.27-13.05-31.85-25.44C4.69,130.93-6.49,92.59,4.42,73.19 c5.42-9.66,15.34-15.77,26.15-15.93c12.23-0.21,23.79,8.22,31.3,8.22c7.5,0,21.31-10.16,35.91-8.66 c6.13,0.26,23.32,2.47,34.35,18.59c-0.9,0.54-20.53,11.96-20.31,35.42c0.26,28.21,24.4,37.36,24.73,37.49 C156.41,142.1,152.99,136.21,150.37,130.25z M118.84,28.71c6.51-7.89,10.9-18.85,9.69-29.83c-9.43,0.38-20.84,6.29-27.59,14.18 c-6.05,7.03-11.35,18.25-9.94,29.02C101.41,63.02,112.33,36.6,118.84,28.71z"></path>
-            </svg>
+            <svg class="apple-svg" viewBox="0 0 170 170"><path d="M150.37,130.25c-2.45,5.66-5.35,10.87-8.71,15.66c-8.58,12.23-17.67,24.35-31.15,24.63c-13.05,0.27-17.25-7.74-32.25-7.74 c-15,0-19.68,7.47-32.25,8.01c-13.32,0.54-23.27-13.05-31.85-25.44C4.69,130.93-6.49,92.59,4.42,73.19 c5.42-9.66,15.34-15.77,26.15-15.93c12.23-0.21,23.79,8.22,31.3,8.22c7.5,0,21.31-10.16,35.91-8.66 c6.13,0.26,23.32,2.47,34.35,18.59c-0.9,0.54-20.53,11.96-20.31,35.42c0.26,28.21,24.4,37.36,24.73,37.49 C156.41,142.1,152.99,136.21,150.37,130.25z M118.84,28.71c6.51-7.89,10.9-18.85,9.69-29.83c-9.43,0.38-20.84,6.29-27.59,14.18 c-6.05,7.03-11.35,18.25-9.94,29.02C101.41,63.02,112.33,36.6,118.84,28.71z"></path></svg>
             <span class="brand-name">iStore</span>
         </a>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#collection">Products</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Order</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleSupport()" class="track-link">Track Order</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="home">
-        <h1>iPhone 15 Pro</h1>
+        <h1>iPhone pro</h1>
         <p>Titanium. Strong. Light. Pro.</p>
         <a href="#collection" class="hero-btn">Shop Now</a><br>
         <img class="hero-img" src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=1200" alt="iPhone 15 Pro">
     </section>
 
     <section class="collection" id="collection">
-        <div class="grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=800" alt="iPhone 15 Pro Natural Titanium">
-                <h3>iPhone 15 Pro</h3>
-                <span class="price">From $999</span>
-                <a onclick="selectModel('iPhone 15 Pro')" href="#contact" class="buy-now-btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&q=80&w=600" alt="iPhone 15 Blue">
-                <h3>iPhone 15</h3>
-                <span class="price">From $799</span>
-                <a onclick="selectModel('iPhone 15')" href="#contact" class="buy-now-btn">Buy Now</a>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?auto=format&fit=crop&q=80&w=600" alt="iPhone 14">
-                <h3>iPhone 14</h3>
-                <span class="price">From $699</span>
-                <a onclick="selectModel('iPhone 14')" href="#contact" class="buy-now-btn">Buy Now</a>
-            </div>
+    <h2 style="text-align:center; margin-bottom: 40px;">Trending Models</h2>
+    
+    <div class="grid">
+        <div class="product-card">
+            
+            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600" alt="iPhone 17 Pro Max">
+            <h3>iPhone 17 Pro Max</h3>
+            <span class="price">From ₹1,59,900</span>
+            <button onclick="selectModel('iPhone 17 Pro Max')" class="buy-now-btn">Buy Now</button>
         </div>
-    </section>
 
-    <section class="contact" id="contact">
-        <div class="form-box">
-            <h2 style="text-align: center; margin-bottom: 20px;">Complete Your Order</h2>
-            <form id="orderForm" onsubmit="handleOrder(event)">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <select id="modelSelect" required>
-                    <option value="">Choose Model</option>
-                    <option value="iPhone 15 Pro">iPhone 15 Pro</option>
-                    <option value="iPhone 15">iPhone 15</option>
-                    <option value="iPhone 14">iPhone 14</option>
-                </select>
-                <textarea rows="4" placeholder="Shipping Address" required></textarea>
-                <button type="submit" class="submit-btn">Place Order Inquiry</button>
-            </form>
+        <div class="product-card">
+            
+            <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600" alt="iPhone 17 Air">
+            <h3>iPhone 17 Air</h3>
+            <span class="price">From ₹1,09,900</span>
+            <button onclick="selectModel('iPhone 17 Air')" class="buy-now-btn">Buy Now</button>
         </div>
-    </section>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <span class="modal-icon">✅</span>
-            <h2>Order Placed!</h2>
-            <p>Thank you for shopping with iStore. Our sales team will contact you within 24 hours.</p>
-            <button class="close-modal-btn" onclick="closeModal()">Got it</button>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=600" alt="iPhone 16 Pro">
+            <h3>iPhone 16 Pro</h3>
+            <span class="price">From ₹1,29,900</span>
+            <button onclick="selectModel('iPhone 16 Pro')" class="buy-now-btn">Buy Now</button>
         </div>
     </div>
 
-    <section class="about-section" id="about">
-        <h2>About iStore Digital</h2>
-        <p>Leading the way in premium mobile retail experiences.</p>
+    <div style="text-align: center; margin: 50px 0;">
+        <button onclick="toggleInventory()" id="inventoryBtn" class="hero-btn" style="background: #1d1d1f; border: none; cursor: pointer; padding: 15px 40px;">View Full Inventory ↓</button>
+    </div>
+
+    <div id="fullInventory" style="display: none;">
+    
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s17')">iPhone 17 Series (Click to view all) <span>+</span></button>
+        <div id="s17" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="17 Pro Max">
+                    <h4>17 Pro Max</h4>
+                    <span class="price">₹1,59,900</span>
+                    <button onclick="selectModel('iPhone 17 Pro Max')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="17 Pro">
+                    <h4>17 Pro</h4>
+                    <span class="price">₹1,34,900</span>
+                    <button onclick="selectModel('iPhone 17 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="17 Air">
+                    <h4>17 Air</h4>
+                    <span class="price">₹1,09,900</span>
+                    <button onclick="selectModel('iPhone 17 Air')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="17">
+                    <h4>iPhone 17</h4>
+                    <span class="price">₹79,900</span>
+                    <button onclick="selectModel('iPhone 17')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s16')">iPhone 16 Series (Apple Intelligence Ready) <span>+</span></button>
+        <div id="s16" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1727281433504-874b7c8f921d?w=300" alt="16 Pro Max">
+                    <h4>16 Pro Max</h4>
+                    <span class="price">₹1,44,900</span>
+                    <button onclick="selectModel('iPhone 16 Pro Max')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1727281433504-874b7c8f921d?w=300" alt="16 Pro">
+                    <h4>16 Pro</h4>
+                    <span class="price">₹1,19,900</span>
+                    <button onclick="selectModel('iPhone 16 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1726053359670-65979207802f?w=300" alt="16 Plus">
+                    <h4>16 Plus</h4>
+                    <span class="price">₹89,900</span>
+                    <button onclick="selectModel('iPhone 16 Plus')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" alt="16e">
+                    <h4>iPhone 16 / 16e</h4>
+                    <span class="price">From ₹54,900</span>
+                    <button onclick="selectModel('iPhone 16e')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s15')">iPhone 15 Series (Click to view all) <span>+</span></button>
+        <div id="s15" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="15 Pro Max">
+                    <h4>15 Pro Max</h4>
+                    <span class="price">₹1,19,900</span>
+                    <button onclick="selectModel('iPhone 15 Pro Max')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="15 Pro">
+                    <h4>15 Pro</h4>
+                    <span class="price">₹1,05,900</span>
+                    <button onclick="selectModel('iPhone 15 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="15 Plus">
+                    <h4>15 Plus</h4>
+                    <span class="price">₹79,900</span>
+                    <button onclick="selectModel('iPhone 15 Plus')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" alt="15">
+                    <h4>iPhone 15</h4>
+                    <span class="price">₹69,900</span>
+                    <button onclick="selectModel('iPhone 15')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s14')">iPhone 14 Series <span>+</span></button>
+        <div id="s14" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300" alt="14 Pro Max">
+                    <h4>14 Pro Max</h4>
+                    <span class="price">₹94,900</span>
+                    <button onclick="selectModel('iPhone 14 Pro Max')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300" alt="14 Pro">
+                    <h4>14 Pro</h4>
+                    <span class="price">₹84,900</span>
+                    <button onclick="selectModel('iPhone 14 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300" alt="14 Plus">
+                    <h4>14 Plus</h4>
+                    <span class="price">₹64,900</span>
+                    <button onclick="selectModel('iPhone 14 Plus')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300" alt="14">
+                    <h4>iPhone 14</h4>
+                    <span class="price">₹54,900</span>
+                    <button onclick="selectModel('iPhone 14')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s13')">iPhone 13 & 12 Series <span>+</span></button>
+        <div id="s13" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=300" alt="13 Pro">
+                    <h4>13 Pro / Max</h4>
+                    <span class="price">From ₹59,900</span>
+                    <button onclick="selectModel('iPhone 13 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" alt="13">
+                    <h4>iPhone 13 / Mini</h4>
+                    <span class="price">From ₹42,900</span>
+                    <button onclick="selectModel('iPhone 13')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1611432579699-484f7990b127?w=300" alt="12">
+                    <h4>iPhone 12 Series</h4>
+                    <span class="price">From ₹34,900</span>
+                    <button onclick="selectModel('iPhone 12')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('s11')">iPhone 11 & Classic Series <span>+</span></button>
+        <div id="s11" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300" alt="11 Pro">
+                    <h4>11 Pro / Max</h4>
+                    <span class="price">₹32,900</span>
+                    <button onclick="selectModel('iPhone 11 Pro')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300" alt="11">
+                    <h4>iPhone 11</h4>
+                    <span class="price">₹26,900</span>
+                    <button onclick="selectModel('iPhone 11')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1556656793-062ff98782ee?w=300" alt="XS">
+                    <h4>iPhone XS / X</h4>
+                    <span class="price">From ₹18,900</span>
+                    <button onclick="selectModel('iPhone XS')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="series-container">
+        <button class="series-header" onclick="toggleSeries('sSE')">iPhone SE Series <span>+</span></button>
+        <div id="sSE" class="series-content">
+            <div class="grid small-grid">
+                <div class="product-card">
+                    <h4>SE (3rd Gen)</h4>
+                    <span class="price">₹34,900</span>
+                    <button onclick="selectModel('iPhone SE 3rd Gen')" class="buy-now-btn">Buy Now</button>
+                </div>
+                <div class="product-card">
+                    <h4>SE (2nd Gen)</h4>
+                    <span class="price">₹19,900</span>
+                    <button onclick="selectModel('iPhone SE 2nd Gen')" class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+    </div>
+</section>
+        
+    </div>
+</section>
+    <section class="contact" id="contact">
+        <div class="checkout-container">
+            <div class="checkout-info">
+                <span class="badge">Secure Checkout</span>
+                <h2>Complete your order.</h2>
+                <p>Fill in your details below. Our team will contact you within 24 hours to confirm shipping.</p>
+                <div class="benefit-tag">✓ Free Express Shipping</div>
+                <div class="benefit-tag">✓ Apple Certified Warranty</div>
+            </div>
+
+            <div class="form-box">
+    <form id="orderForm" onsubmit="handleOrder(event)">
+        <div class="input-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Your Name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="input-group">
+            <label>Mobile Number</label>
+            <div style="display: flex; gap: 5px;">
+                <input type="text" value="+91" style="width: 55px; text-align: center; background: #f5f5f7; border: 1px solid #d2d2d7; border-radius: 8px;" readonly>
+                <input type="tel" 
+                       placeholder="70123 45678" 
+                       pattern="[6-9][0-9]{9}" 
+                       title="Please enter a valid 10-digit Indian mobile number" 
+                       required 
+                       style="flex: 1;">
+            </div>
+        </div>
+
+        <div class="input-group">
+    <label>Device</label>
+    <select id="modelSelect" required>
+        <option value="">Choose Model</option>
+        <option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option>
+        <option value="iPhone 16 Pro">iPhone 16 Pro</option>
+        <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+        <option value="iPhone 15">iPhone 15</option>
+        <option value="iPhone 14">iPhone 14</option>
+    </select>
+        </div>
+
+        <div class="input-group">
+            <label>Shipping Address (Include PIN Code)</label>
+            <textarea rows="3" placeholder="House No, Street, City, State, PIN" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Confirm Inquiry</button>
+    </form>
+</div>
+        </div>
     </section>
+
+    <div class="support-launcher" onclick="toggleSupport()">✉️</div>
+    <div class="support-window" id="supportWindow">
+        <div class="support-header">Order Tracking & Support</div>
+        <div class="support-body">
+            <form onsubmit="handleMissingOrder(event)">
+                <label>Order ID</label>
+                <input type="text" placeholder="#IST-1234" required>
+                <label>Issue Details</label>
+                <textarea placeholder="How can we help?" rows="3" required></textarea>
+                <button type="submit" class="submit-btn black-btn">Submit Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <span style="font-size: 50px;">✅</span>
+            <h2 id="modalTitle">Success!</h2>
+            <p id="modalMsg">Message goes here.</p>
+            <button class="submit-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
 
     <footer>&copy; 2026 iStore Digital.</footer>
 
-    <script>
-        function selectModel(name) { document.getElementById('modelSelect').value = name; }
-
-        function handleOrder(e) {
-            e.preventDefault();
-            const modal = document.getElementById('modalOverlay');
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('active'), 10);
-            document.getElementById("orderForm").reset();
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modalOverlay');
-            modal.classList.remove('active');
-            setTimeout(() => modal.style.display = 'none', 300);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
