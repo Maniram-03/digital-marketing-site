@@ -5,20 +5,17 @@ function selectModel(name) {
     // Smooth scroll to the form
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
 }
-
 // Function to open/close the Support Window
 function toggleSupport() {
     const win = document.getElementById('supportWindow');
     win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
 }
-
 // Handle Order Submission
 function handleOrder(e) {
     e.preventDefault();
     showModal("Order Received", "Our sales team will contact you via email to finalize your purchase.");
     e.target.reset();
 }
-
 // Handle Support/Missing Order Ticket
 function handleMissingOrder(e) {
     e.preventDefault();
@@ -35,14 +32,9 @@ function showModal(title, msg) {
     document.getElementById('modalMsg').innerText = msg;
     modal.style.display = 'flex';
 }
-
 function closeModal() {
     document.getElementById('modalOverlay').style.display = 'none';
 }
-
-
-
-
 function toggleAllProducts() {
     const extra = document.getElementById('extraProducts');
     const btn = document.getElementById('viewMoreBtn');
@@ -66,9 +58,6 @@ function selectModel(modelName) {
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     }
 }
-
-
-
 function toggleInventory() {
     const inventory = document.getElementById('fullInventory');
     const btn = document.getElementById('inventoryBtn');
@@ -91,10 +80,6 @@ function selectModel(name) {
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     }
 }
-
-
-
-
 function toggleSeries(seriesId) {
     const content = document.getElementById(seriesId);
     
@@ -119,11 +104,6 @@ function toggleInventory() {
         btn.innerText = "View Full Inventory ↓";
     }
 }
-
-
-
-
-
 const deviceData = {
     "iPhone 17 Pro Max": { cpu: "A19 Pro", camera: "48MP Ultra-Wide", display: "6.9\" ProMotion", battery: "30+ hrs" },
     "iPhone 17 Pro": { cpu: "A19 Pro", camera: "48MP Main", display: "6.3\" ProMotion", battery: "26 hrs" },
@@ -150,7 +130,6 @@ const deviceData = {
     "iPhone SE 3rd Gen": { cpu: "A15 Bionic", camera: "12MP Wide", display: "4.7\" Retina", battery: "15 hrs" },
     "iPhone SE 2nd Gen": { cpu: "A13 Bionic", camera: "12MP Wide", display: "4.7\" Retina", battery: "13 hrs" }
 };
-
 // Function to handle showing Specs
 function viewSpecs(model) {
     const data = deviceData[model] || { cpu: "TBA", camera: "Standard", display: "Retina", battery: "Standard" };
@@ -165,7 +144,6 @@ function viewSpecs(model) {
     
     document.getElementById('specsModal').style.display = 'flex';
 }
-
 // Function to close the Specs Modal
 function closeSpecs() {
     document.getElementById('specsModal').style.display = 'none';
