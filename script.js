@@ -689,5 +689,3 @@
             document.getElementById('specsModal').style.display = 'none';
         }
    
-
-

@@ -171,7 +171,7 @@
             opacity: 1;
         }
 
-        /* ===== AUTH MODAL - COMPACT SIZE ===== */
+        /* Auth Modal - Combined Login/Signup */
         .auth-modal {
             position: fixed;
             top: 0;
@@ -188,11 +188,11 @@
 
         .auth-container {
             background: white;
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 24px;
+            padding: 40px;
             width: 90%;
-            max-width: 340px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 400px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
             animation: modalPop 0.3s ease;
         }
 
@@ -209,36 +209,34 @@
 
         .auth-header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         .auth-header h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 4px;
-            color: #000000;
+            margin-bottom: 8px;
         }
 
         .auth-header p {
             color: #666666;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
 
         .auth-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
             border-bottom: 1px solid #eaeaea;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .auth-tab {
             flex: 1;
             text-align: center;
-            padding: 8px;
+            padding: 10px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.9rem;
             color: #666666;
             transition: all 0.2s;
             border-radius: 8px;
@@ -264,23 +262,22 @@
         }
 
         .auth-input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .auth-input-group label {
             display: block;
             font-weight: 500;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: #000000;
-            font-size: 0.85rem;
         }
 
         .auth-input-group input {
             width: 100%;
-            padding: 10px 12px;
+            padding: 14px 16px;
             border: 1px solid #dddddd;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            font-size: 1rem;
             transition: all 0.2s;
         }
 
@@ -290,46 +287,18 @@
             box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
         }
 
-        /* Phone Group for auth */
-        .auth-input-group .phone-group {
-            display: flex;
-            align-items: center;
-            border: 1px solid #dddddd;
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-        }
-
-        .auth-input-group .country-code {
-            background: #f5f5f5;
-            padding: 10px 12px;
-            color: #000000;
-            font-weight: 500;
-            border-right: 1px solid #dddddd;
-            min-width: 60px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .auth-input-group .phone-group input {
-            flex: 1;
-            border: none !important;
-            border-radius: 0 !important;
-            padding: 10px 12px;
-        }
-
         .auth-btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #0071e3;
             color: white;
             border: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         .auth-btn:hover {
@@ -340,9 +309,9 @@
 
         .auth-footer {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
             color: #666666;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .auth-footer a {
@@ -354,9 +323,9 @@
 
         .close-auth {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 22px;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
             cursor: pointer;
             color: #666666;
             transition: color 0.2s;
@@ -1439,4 +1408,3 @@
                 grid-template-columns: 1fr;
             }
         }
-
