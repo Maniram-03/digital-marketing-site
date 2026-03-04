@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iStore | Premium Apple Products</title>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="stylesheet" href="style.css"> 
+    
+    <!-- Google Identity Services (for actual Google Sign-In) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav>
         <a href="#" class="logo-area">
-            <svg class="apple-svg" viewBox="0 0 170 170"><path d="M150.37,130.25c-2.45,5.66-5.35,10.87-8.71,15.66c-8.58,12.23-17.67,24.35-31.15,24.63c-13.05,0.27-17.25-7.74-32.25-7.74 c-15,0-19.68,7.47-32.25,8.01c-13.32,0.54-23.27-13.05-31.85-25.44C4.69,130.93-6.49,92.59,4.42,73.19 c5.42-9.66,15.34-15.77,26.15-15.93c12.23-0.21,23.79,8.22,31.3,8.22c7.5,0,21.31-10.16,35.91-8.66 c6.13,0.26,23.32,2.47,34.35,18.59c-0.9,0.54-20.53,11.96-20.31,35.42c0.26,28.21,24.4,37.36,24.73,37.49 C156.41,142.1,152.99,136.21,150.37,130.25z M118.84,28.71c6.51-7.89,10.9-18.85,9.69-29.83c-9.43,0.38-20.84,6.29-27.59,14.18 c-6.05,7.03-11.35,18.25-9.94,29.02C101.41,63.02,112.33,36.6,118.84,28.71z"></path></svg>
+            <svg class="apple-svg" viewBox="0 0 170 170">
+                <path d="M150.37,130.25c-2.45,5.66-5.35,10.87-8.71,15.66c-8.58,12.23-17.67,24.35-31.15,24.63c-13.05,0.27-17.25-7.74-32.25-7.74 c-15,0-19.68,7.47-32.25,8.01c-13.32,0.54-23.27-13.05-31.85-25.44C4.69,130.93-6.49,92.59,4.42,73.19 c5.42-9.66,15.34-15.77,26.15-15.93c12.23-0.21,23.79,8.22,31.3,8.22c7.5,0,21.31-10.16,35.91-8.66 c6.13,0.26,23.32,2.47,34.35,18.59c-0.9,0.54-20.53,11.96-20.31,35.42c0.26,28.21,24.4,37.36,24.73,37.49 C156.41,142.1,152.99,136.21,150.37,130.25z M118.84,28.71c6.51-7.89,10.9-18.85,9.69-29.83c-9.43,0.38-20.84,6.29-27.59,14.18 c-6.05,7.03-11.35,18.25-9.94,29.02C101.41,63.02,112.33,36.6,118.84,28.71z"></path>
+            </svg>
             <span class="brand-name">iStore</span>
         </a>
         <ul>
@@ -62,105 +72,16 @@
         </ul>
     </nav>
 
-    <!-- Auth Modal (Login/Signup) -->
-    <div id="authModal" class="auth-modal">
-        <div class="auth-container">
-            <span class="close-auth" onclick="hideAuthModal()">&times;</span>
-            <div class="auth-header">
-                <h2 id="authTitle">Welcome</h2>
-                <p id="authSubtitle">Sign in to continue or create new account</p>
-            </div>
-            
-            <div class="auth-tabs">
-                <div class="auth-tab active" onclick="switchAuthTab('login')">Login</div>
-                <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
-            </div>
-
-            <!-- Login Form -->
-            <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
-                <div class="auth-input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="name@example.com" required>
-                </div>
-                <div class="auth-input-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="auth-btn">Sign In</button>
-                <div class="auth-footer">
-                    Don't have an account? <a onclick="switchAuthTab('signup')">Sign Up</a>
-                </div>
-            </form>
-
-            <!-- Signup Form -->
-            <form id="signupForm" class="auth-form" onsubmit="handleSignup(event)">
-                <div class="auth-input-group">
-                    <label>Full Name</label>
-                    <input type="text" id="signupName" placeholder="John Doe" required>
-                </div>
-                <div class="auth-input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="signupEmail" placeholder="name@example.com" required>
-                </div>
-                <div class="auth-input-group">
-                    <label>Mobile Number</label>
-                    <div class="phone-group">
-                        <span class="country-code">+91</span>
-                        <input type="tel" id="signupPhone" placeholder="98765 43210" pattern="[6-9][0-9]{9}" required>
-                    </div>
-                </div>
-                <div class="auth-input-group">
-                    <label>Password</label>
-                    <input type="password" id="signupPassword" placeholder="••••••••" required>
-                </div>
-                <div class="auth-input-group">
-                    <label>Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="auth-btn">Create Account</button>
-                <div class="auth-footer">
-                    Already have an account? <a onclick="switchAuthTab('login')">Sign In</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Profile Modal -->
-    <div id="profileModal" class="profile-modal">
-        <div class="profile-container">
-            <div class="profile-header">
-                <h2>My Profile</h2>
-                <span class="close-profile" onclick="hideProfile()">&times;</span>
-            </div>
-            <div id="profileContent">
-                <!-- Profile content will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Order History Modal -->
-    <div id="orderHistoryModal" class="order-history-modal">
-        <div class="order-history-container">
-            <div class="order-history-header">
-                <h2>My Orders</h2>
-                <span class="close-history" onclick="hideOrderHistory()">&times;</span>
-            </div>
-            <div id="orderHistoryContent">
-                <!-- Order history will be loaded here -->
-            </div>
-        </div>
-    </div>
-
     <main>
+        <!-- Hero Section with Slideshow -->
         <section class="hero" id="home">
             <h1>iPhone Pro</h1>
             <p>Titanium. Strong. Light. Pro.</p>
-            <a href="#collection" class="hero-btn">Shop Now</a><br>
+            <a href="#collection" class="hero-btn">Shop Now</a>
             
-            <!-- Slideshow Container - Darker Gray Background -->
             <div class="slideshow-container">
                 <div class="slide active">
-                    <img src="hero-iphone.png" alt="iPhone 1" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
+                    <img src="hero-iphone.png" alt="iPhone" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
                 </div>
                 <div class="slide">
                     <img src="iphone-17-pro-max.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
@@ -172,7 +93,6 @@
                     <img src="iphone-17-air.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=1000&h=500&fit=crop'">
                 </div>
                 
-                <!-- Dots indicator -->
                 <div class="dots-container">
                     <span class="dot active" onclick="currentSlide(1)"></span>
                     <span class="dot" onclick="currentSlide(2)"></span>
@@ -182,48 +102,11 @@
             </div>
         </section>
 
+        <!-- Products Section -->
         <section class="collection" id="collection">
             <h2>Trending Models</h2>
-            <div class="grid">
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-pro-max-C8102T_W.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Pro Max</h3>
-                        <span class="price">₹1,59,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Pro Max')" class="view-specs-btn">View Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Pro Max')" class="buy-now-btn">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-pro-Dh_0zZfu.png" alt="iPhone 17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Pro</h3>
-                        <span class="price">₹1,34,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Pro')" class="view-specs-btn">View Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Pro')" class="buy-now-btn">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-air-B_WJmMvU.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Air</h3>
-                        <span class="price">₹1,09,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Air')" class="view-specs-btn">View Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Air')" class="buy-now-btn">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid" id="trendingGrid">
+                <!-- Products will be loaded here -->
             </div>
 
             <div class="inventory-toggle">
@@ -234,353 +117,11 @@
             </div>
 
             <div id="fullInventory" style="display: none;">
-                <!-- iPhone 17 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s17', this)">
-                        <span>iPhone 17 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s17" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-pro-max-C8102T_W.png" alt="17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Pro Max</h4>
-                                    <span class="price">₹1,59,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-pro-Dh_0zZfu.png" alt="17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Pro</h4>
-                                    <span class="price">₹1,34,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-air-B_WJmMvU.png" alt="17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Air</h4>
-                                    <span class="price">₹1,09,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Air')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Air')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-mkrrjEvg.png" alt="17" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 16 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s16', this)">
-                        <span>iPhone 16 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s16" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-promax-C5YEZrWp.png" alt="16 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Pro Max</h4>
-                                    <span class="price">₹1,44,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-pro-DjGeCuuM.png" alt="16 Pro" onerror="this.src='https://images.unsplash.com/photo-1727281433504-874b7c8f921d?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Pro</h4>
-                                    <span class="price">₹1,19,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-plus-BneK2enr.png" alt="16 Plus" onerror="this.src='https://images.unsplash.com/photo-1726053359670-65979207802f?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Plus</h4>
-                                    <span class="price">₹99,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-DobysrZI.png" alt="16" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 15 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s15', this)">
-                        <span>iPhone 15 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s15" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-promax-BNb87A-7.png" alt="15 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Pro Max</h4>
-                                    <span class="price">₹1,29,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-pro-DmQW1njW.png" alt="15 Pro" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Pro</h4>
-                                    <span class="price">₹1,09,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-plus-BEhdu-gV.png" alt="15 Plus" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Plus</h4>
-                                    <span class="price">₹89,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-Ca10t-45.png" alt="15" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15</h4>
-                                    <span class="price">₹69,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 14 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s14', this)">
-                        <span>iPhone 14 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s14" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-pro-Df8Tnsi9.png" alt="14 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Pro Max</h4>
-                                    <span class="price">₹99,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-pro-Df8Tnsi9.png" alt="14 Pro" onerror="this.src='https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Pro</h4>
-                                    <span class="price">₹84,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-plus-Ct1L7bZ3.png" alt="14 Plus" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Plus</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-Bh3HPR_T.png" alt="14" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14</h4>
-                                    <span class="price">₹59,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 13 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s13', this)">
-                        <span>iPhone 13 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s13" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-promax-CJJ-w0CJ.png" alt="13 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13 Pro Max</h4>
-                                    <span class="price">₹89,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-pro-B0Rz7trl.png" alt="13 Pro" onerror="this.src='https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13 Pro</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-standard-NvFMrxGz.png" alt="13" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13</h4>
-                                    <span class="price">₹49,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone SE Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('sSE', this)">
-                        <span>iPhone SE Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="sSE" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-se3-DfWf8aiv.png" alt="SE 3" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone SE (3rd Gen)</h4>
-                                    <span class="price">₹39,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone SE 3rd Gen')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone SE 3rd Gen')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-se2-j_SYmInU.png" alt="SE 2" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone SE (2nd Gen)</h4>
-                                    <span class="price">₹29,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone SE 2nd Gen')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone SE 2nd Gen')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Full inventory will be loaded here -->
             </div>
         </section>
 
+        <!-- Checkout Section -->
         <section class="contact" id="contact">
             <div class="checkout-container">
                 <span class="badge">Secure Checkout</span>
@@ -597,7 +138,7 @@
                         </div>
                         <div class="input-group">
                             <label>Email Address</label>
-                            <input type="email" id="customerEmail" placeholder="name@example.com" required value="">
+                            <input type="email" id="customerEmail" placeholder="name@example.com" required>
                         </div>
                         <div class="input-group">
                             <label>Mobile Number</label>
@@ -610,27 +151,6 @@
                             <label>Device</label>
                             <select id="modelSelect" required onchange="updateAmount()">
                                 <option value="">Choose Model</option>
-                                <option value="iPhone 17 Pro Max">iPhone 17 Pro Max - ₹1,59,900</option>
-                                <option value="iPhone 17 Pro">iPhone 17 Pro - ₹1,34,900</option>
-                                <option value="iPhone 17 Air">iPhone 17 Air - ₹1,09,900</option>
-                                <option value="iPhone 17">iPhone 17 - ₹79,900</option>
-                                <option value="iPhone 16 Pro Max">iPhone 16 Pro Max - ₹1,44,900</option>
-                                <option value="iPhone 16 Pro">iPhone 16 Pro - ₹1,19,900</option>
-                                <option value="iPhone 16 Plus">iPhone 16 Plus - ₹99,900</option>
-                                <option value="iPhone 16">iPhone 16 - ₹79,900</option>
-                                <option value="iPhone 15 Pro Max">iPhone 15 Pro Max - ₹1,29,900</option>
-                                <option value="iPhone 15 Pro">iPhone 15 Pro - ₹1,09,900</option>
-                                <option value="iPhone 15 Plus">iPhone 15 Plus - ₹89,900</option>
-                                <option value="iPhone 15">iPhone 15 - ₹69,900</option>
-                                <option value="iPhone 14 Pro Max">iPhone 14 Pro Max - ₹99,900</option>
-                                <option value="iPhone 14 Pro">iPhone 14 Pro - ₹84,900</option>
-                                <option value="iPhone 14 Plus">iPhone 14 Plus - ₹79,900</option>
-                                <option value="iPhone 14">iPhone 14 - ₹59,900</option>
-                                <option value="iPhone 13 Pro Max">iPhone 13 Pro Max - ₹89,900</option>
-                                <option value="iPhone 13 Pro">iPhone 13 Pro - ₹79,900</option>
-                                <option value="iPhone 13">iPhone 13 - ₹49,900</option>
-                                <option value="iPhone SE 3rd Gen">iPhone SE (3rd Gen) - ₹39,900</option>
-                                <option value="iPhone SE 2nd Gen">iPhone SE (2nd Gen) - ₹29,900</option>
                             </select>
                         </div>
                         <div class="input-group">
@@ -718,6 +238,7 @@
             </div>
         </section>
 
+        <!-- Support Chat -->
         <div class="support-launcher" onclick="toggleSupport()">✉️</div>
         <div class="support-window" id="supportWindow">
             <div class="support-header">Customer Support</div>
@@ -732,7 +253,122 @@
             </div>
         </div>
 
-        <!-- Modals -->
+        <!-- Auth Modal (Login/Signup with Google) -->
+        <div id="authModal" class="auth-modal">
+            <div class="auth-container">
+                <span class="close-auth" onclick="hideAuthModal()">&times;</span>
+                <div class="auth-header">
+                    <h2 id="authTitle">Welcome</h2>
+                    <p id="authSubtitle">Sign in to continue or create new account</p>
+                </div>
+                
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchAuthTab('login')">Login</div>
+                    <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+                    <div class="auth-input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign In</button>
+                    
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+                        <svg class="google-icon" viewBox="0 0 24 24">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    
+                    <div class="auth-footer">
+                        Don't have an account? <a onclick="switchAuthTab('signup')">Sign Up</a>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signupForm" class="auth-form" onsubmit="handleSignup(event)">
+                    <div class="auth-input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" placeholder="John Doe" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="signupEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label>Mobile Number</label>
+                        <div class="phone-group">
+                            <span class="country-code">+91</span>
+                            <input type="tel" id="signupPhone" placeholder="98765 43210" pattern="[6-9][0-9]{9}" required>
+                        </div>
+                    </div>
+                    <div class="auth-input-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                    
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+                        <svg class="google-icon" viewBox="0 0 24 24">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    
+                    <div class="auth-footer">
+                        Already have an account? <a onclick="switchAuthTab('login')">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Profile Modal -->
+        <div id="profileModal" class="profile-modal">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h2>My Profile</h2>
+                    <span class="close-profile" onclick="hideProfile()">&times;</span>
+                </div>
+                <div id="profileContent"></div>
+            </div>
+        </div>
+
+        <!-- Order History Modal -->
+        <div id="orderHistoryModal" class="order-history-modal">
+            <div class="order-history-container">
+                <div class="order-history-header">
+                    <h2>My Orders</h2>
+                    <span class="close-history" onclick="hideOrderHistory()">&times;</span>
+                </div>
+                <div id="orderHistoryContent"></div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
         <div class="modal-overlay" id="modalOverlay">
             <div class="modal-content">
                 <span style="font-size: 48px;">✅</span>
@@ -742,6 +378,7 @@
             </div>
         </div>
 
+        <!-- Error Modal -->
         <div class="modal-overlay" id="errorModal">
             <div class="modal-content">
                 <span style="font-size: 48px;">❌</span>
@@ -751,6 +388,7 @@
             </div>
         </div>
 
+        <!-- Specs Modal -->
         <div class="modal-overlay" id="specsModal" style="display: none;">
             <div class="modal-content">
                 <h2 id="specTitle"></h2>
@@ -760,7 +398,7 @@
         </div>
     </main>
 
-    <!-- Footer - Dark Gray (30% lighter) -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -794,21 +432,15 @@
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <div class="contact-info">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     <span>support@istore.com</span>
                 </div>
                 <div class="contact-info">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                     <span>+91 1800-123-4567</span>
                 </div>
                 <div class="contact-info">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     <span>123 Apple Street, Tech Park, Bangalore - 560001</span>
                 </div>
             </div>
@@ -818,6 +450,7 @@
         </div>
     </footer>
 
-   <script src="script.js"></script>
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
 </body>
 </html>
