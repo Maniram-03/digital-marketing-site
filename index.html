@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iStore | Premium Apple Products</title>
     
     <!-- Google Fonts -->
@@ -10,6 +10,9 @@
     
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Google Identity Services (for actual Google Sign-In) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <!-- CSS Link -->
     <link rel="stylesheet" href="style.css">
@@ -27,6 +30,7 @@
             <li><a href="#collection">Products</a></li>
             <li><a href="#contact">Order</a></li>
             <li><a href="javascript:void(0)" onclick="showOrderHistory()">Order History</a></li>
+            <!-- Account Icon / Profile Badge -->
             <li>
                 <div id="accountIcon" class="account-icon" onclick="showAuthModal()">
                     <svg viewBox="0 0 24 24">
@@ -37,6 +41,7 @@
                     <div class="avatar" id="profileAvatar">U</div>
                     <span class="tooltip-text" id="profileTooltip">user@example.com</span>
                 </div>
+                <!-- Profile Dropdown -->
                 <div id="profileDropdown" class="profile-dropdown">
                     <div class="profile-dropdown-item" onclick="showProfile()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
@@ -75,26 +80,24 @@
             <a href="#collection" class="hero-btn">Shop Now</a>
             
             <div class="slideshow-container">
-                <div class="slides-track">
-                    <div class="slide">
-                        <img src="hero-iphone-1PyX7URL.png" alt="iPhone" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
-                    </div>
-                    <div class="slide">
-                        <img src="iphone-17-pro-max-C8102T_W.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
-                    </div>
-                    <div class="slide">
-                        <img src="iphone-17-pro-Dh_0zZfu.png" alt="iPhone 17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=1000&h=500&fit=crop'">
-                    </div>
-                    <div class="slide">
-                        <img src="iphone-17-air-B_WJmMvU.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=1000&h=500&fit=crop'">
-                    </div>
+                <div class="slide active">
+                    <img src="hero-iphone.png" alt="iPhone" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
+                </div>
+                <div class="slide">
+                    <img src="iphone-17-pro-max.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=500&fit=crop'">
+                </div>
+                <div class="slide">
+                    <img src="iphone-17-pro.png" alt="iPhone 17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=1000&h=500&fit=crop'">
+                </div>
+                <div class="slide">
+                    <img src="iphone-17-air.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=1000&h=500&fit=crop'">
                 </div>
                 
                 <div class="dots-container">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
                 </div>
             </div>
         </section>
@@ -102,7 +105,9 @@
         <!-- Products Section -->
         <section class="collection" id="collection">
             <h2>Trending Models</h2>
-            <div class="grid" id="trendingGrid"></div>
+            <div class="grid" id="trendingGrid">
+                <!-- Products will be loaded here -->
+            </div>
 
             <div class="inventory-toggle">
                 <button onclick="toggleInventory()" id="inventoryBtn" class="toggle-btn">
@@ -111,7 +116,9 @@
                 </button>
             </div>
 
-            <div id="fullInventory" style="display: none;"></div>
+            <div id="fullInventory" style="display: none;">
+                <!-- Full inventory will be loaded here -->
+            </div>
         </section>
 
         <!-- Checkout Section -->
@@ -151,24 +158,35 @@
                             <div class="static-amount" id="amountDisplay">₹0</div>
                         </div>
                         
+                        <!-- Payment Methods -->
                         <div class="payment-methods">
                             <div class="payment-title">Select Payment Method</div>
                             <div class="payment-options">
                                 <div class="payment-option">
                                     <input type="radio" name="payment" id="cod" value="cod" checked onchange="togglePaymentDetails()">
-                                    <label for="cod"><span class="icon">💵</span>Cash on Delivery</label>
+                                    <label for="cod">
+                                        <span class="icon">💵</span>
+                                        Cash on Delivery
+                                    </label>
                                 </div>
                                 <div class="payment-option">
                                     <input type="radio" name="payment" id="card" value="card" onchange="togglePaymentDetails()">
-                                    <label for="card"><span class="icon">💳</span>Credit/Debit Card</label>
+                                    <label for="card">
+                                        <span class="icon">💳</span>
+                                        Credit/Debit Card
+                                    </label>
                                 </div>
                                 <div class="payment-option">
                                     <input type="radio" name="payment" id="upi" value="upi" onchange="togglePaymentDetails()">
-                                    <label for="upi"><span class="icon">📱</span>UPI</label>
+                                    <label for="upi">
+                                        <span class="icon">📱</span>
+                                        UPI
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- Card Payment Details -->
                         <div id="cardDetails" class="payment-details">
                             <h4>Card Information</h4>
                             <div class="input-group">
@@ -191,6 +209,7 @@
                             </div>
                         </div>
                         
+                        <!-- UPI Payment Details -->
                         <div id="upiDetails" class="payment-details">
                             <h4>UPI Information</h4>
                             <div class="input-group">
@@ -213,7 +232,7 @@
                             <label>Shipping Address</label>
                             <textarea id="shippingAddress" rows="3" placeholder="House No, Street, City, PIN" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Confirm Order</button>
+                        <button type="submit" class="submit-btn" id="orderSubmitBtn">Confirm Order</button>
                     </form>
                 </div>
             </div>
@@ -234,7 +253,7 @@
             </div>
         </div>
 
-        <!-- Auth Modal -->
+        <!-- Auth Modal (Login/Signup with Google) -->
         <div id="authModal" class="auth-modal">
             <div class="auth-container">
                 <span class="close-auth" onclick="hideAuthModal()">&times;</span>
@@ -248,6 +267,7 @@
                     <div class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</div>
                 </div>
 
+                <!-- Login Form -->
                 <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
                     <div class="auth-input-group">
                         <label>Email Address</label>
@@ -259,7 +279,9 @@
                     </div>
                     <button type="submit" class="auth-btn">Sign In</button>
                     
-                    <div class="auth-divider"><span>or</span></div>
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
                     
                     <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
                         <svg class="google-icon" viewBox="0 0 24 24">
@@ -276,6 +298,7 @@
                     </div>
                 </form>
 
+                <!-- Signup Form -->
                 <form id="signupForm" class="auth-form" onsubmit="handleSignup(event)">
                     <div class="auth-input-group">
                         <label>Full Name</label>
@@ -302,7 +325,9 @@
                     </div>
                     <button type="submit" class="auth-btn">Create Account</button>
                     
-                    <div class="auth-divider"><span>or</span></div>
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
                     
                     <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
                         <svg class="google-icon" viewBox="0 0 24 24">
@@ -428,4 +453,4 @@
     <!-- JavaScript Link -->
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
