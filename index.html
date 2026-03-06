@@ -38,10 +38,30 @@
                     <span class="tooltip-text" id="profileTooltip">user@example.com</span>
                 </div>
                 <div id="profileDropdown" class="profile-dropdown">
-                    <div class="profile-dropdown-item" onclick="showProfile()">My Profile</div>
-                    <div class="profile-dropdown-item" onclick="showOrderHistory()">Order History</div>
-                    <div class="profile-dropdown-item" onclick="showAuthModal()">Switch Account</div>
-                    <div class="profile-dropdown-item logout" onclick="logout()">Logout</div>
+                    <div class="profile-dropdown-item" onclick="showProfile()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        My Profile
+                    </div>
+                    <div class="profile-dropdown-item" onclick="showOrderHistory()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                            <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z"/>
+                        </svg>
+                        Order History
+                    </div>
+                    <div class="profile-dropdown-item" onclick="showAuthModal()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        Switch Account
+                    </div>
+                    <div class="profile-dropdown-item logout" onclick="logout()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff3b30">
+                            <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                        </svg>
+                        Logout
+                    </div>
                 </div>
             </li>
         </ul>
@@ -79,55 +99,10 @@
             </div>
         </section>
 
-        <!-- Products Section with ALL MODELS -->
+        <!-- Products Section -->
         <section class="collection" id="collection">
             <h2>Trending Models</h2>
-            <div class="grid" id="trendingGrid">
-                <!-- iPhone 17 Pro Max -->
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-pro-max-C8102T_W.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Pro Max</h3>
-                        <span class="price">₹1,59,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Pro Max')" class="view-specs-btn">Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Pro Max')" class="buy-now-btn">Buy</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- iPhone 17 Pro -->
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-pro-Dh_0zZfu.png" alt="iPhone 17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Pro</h3>
-                        <span class="price">₹1,34,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Pro')" class="view-specs-btn">Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Pro')" class="buy-now-btn">Buy</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- iPhone 17 Air -->
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="iphone-17-air-B_WJmMvU.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=600&h=600&fit=crop'">
-                    </div>
-                    <div class="content">
-                        <h3>iPhone 17 Air</h3>
-                        <span class="price">₹1,09,900</span>
-                        <div class="card-buttons">
-                            <button onclick="viewSpecs('iPhone 17 Air')" class="view-specs-btn">Specs</button>
-                            <button onclick="checkLoginAndSelect('iPhone 17 Air')" class="buy-now-btn">Buy</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="grid" id="trendingGrid"></div>
 
             <div class="inventory-toggle">
                 <button onclick="toggleInventory()" id="inventoryBtn" class="toggle-btn">
@@ -136,352 +111,7 @@
                 </button>
             </div>
 
-            <div id="fullInventory" style="display: none;">
-                <!-- iPhone 17 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s17', this)">
-                        <span>iPhone 17 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s17" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-pro-max-C8102T_W.png" alt="iPhone 17 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Pro Max</h4>
-                                    <span class="price">₹1,59,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-pro-Dh_0zZfu.png" alt="iPhone 17 Pro" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Pro</h4>
-                                    <span class="price">₹1,34,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-air-B_WJmMvU.png" alt="iPhone 17 Air" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17 Air</h4>
-                                    <span class="price">₹1,09,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17 Air')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17 Air')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-17-mkrrjEvg.png" alt="iPhone 17" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 17</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 17')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 17')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 16 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s16', this)">
-                        <span>iPhone 16 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s16" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-promax-C5YEZrWp.png" alt="iPhone 16 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Pro Max</h4>
-                                    <span class="price">₹1,44,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-pro-DjGeCuuM.png" alt="iPhone 16 Pro" onerror="this.src='https://images.unsplash.com/photo-1727281433504-874b7c8f921d?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Pro</h4>
-                                    <span class="price">₹1,19,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-plus-BneK2enr.png" alt="iPhone 16 Plus" onerror="this.src='https://images.unsplash.com/photo-1726053359670-65979207802f?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16 Plus</h4>
-                                    <span class="price">₹99,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-16-DobysrZI.png" alt="iPhone 16" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 16</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 16')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 16')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 15 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s15', this)">
-                        <span>iPhone 15 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s15" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-promax-BNb87A-7.png" alt="iPhone 15 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Pro Max</h4>
-                                    <span class="price">₹1,29,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-pro-DmQW1njW.png" alt="iPhone 15 Pro" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Pro</h4>
-                                    <span class="price">₹1,09,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-plus-BEhdu-gV.png" alt="iPhone 15 Plus" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15 Plus</h4>
-                                    <span class="price">₹89,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-15-Ca10t-45.png" alt="iPhone 15" onerror="this.src='https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 15</h4>
-                                    <span class="price">₹69,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 15')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 15')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 14 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s14', this)">
-                        <span>iPhone 14 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s14" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-pro-Df8Tnsi9.png" alt="iPhone 14 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Pro Max</h4>
-                                    <span class="price">₹99,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-pro-Df8Tnsi9.png" alt="iPhone 14 Pro" onerror="this.src='https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Pro</h4>
-                                    <span class="price">₹84,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-plus-Ct1L7bZ3.png" alt="iPhone 14 Plus" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14 Plus</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14 Plus')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14 Plus')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-14-Bh3HPR_T.png" alt="iPhone 14" onerror="this.src='https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 14</h4>
-                                    <span class="price">₹59,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 14')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 14')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone 13 Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('s13', this)">
-                        <span>iPhone 13 Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="s13" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-promax-CJJ-w0CJ.png" alt="iPhone 13 Pro Max" onerror="this.src='https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13 Pro Max</h4>
-                                    <span class="price">₹89,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13 Pro Max')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13 Pro Max')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-pro-B0Rz7trl.png" alt="iPhone 13 Pro" onerror="this.src='https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13 Pro</h4>
-                                    <span class="price">₹79,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13 Pro')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13 Pro')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-13-standard-NvFMrxGz.png" alt="iPhone 13" onerror="this.src='https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone 13</h4>
-                                    <span class="price">₹49,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone 13')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone 13')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- iPhone SE Series -->
-                <div class="series-container">
-                    <button class="series-header" onclick="toggleSeries('sSE', this)">
-                        <span>iPhone SE Series</span>
-                        <span>+</span>
-                    </button>
-                    <div id="sSE" class="series-content">
-                        <div class="grid">
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-se3-DfWf8aiv.png" alt="iPhone SE 3rd Gen" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone SE (3rd Gen)</h4>
-                                    <span class="price">₹39,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone SE 3rd Gen')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone SE 3rd Gen')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-card">
-                                <div class="image-container">
-                                    <img src="iphone-se2-j_SYmInU.png" alt="iPhone SE 2nd Gen" onerror="this.src='https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=300&h=300&fit=crop'">
-                                </div>
-                                <div class="content">
-                                    <h4>iPhone SE (2nd Gen)</h4>
-                                    <span class="price">₹29,900</span>
-                                    <div class="card-buttons">
-                                        <button onclick="viewSpecs('iPhone SE 2nd Gen')" class="view-specs-btn">Specs</button>
-                                        <button onclick="checkLoginAndSelect('iPhone SE 2nd Gen')" class="buy-now-btn">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="fullInventory" style="display: none;"></div>
         </section>
 
         <!-- Checkout Section -->
@@ -514,27 +144,6 @@
                             <label>Device</label>
                             <select id="modelSelect" required onchange="updateAmount()">
                                 <option value="">Choose Model</option>
-                                <option value="iPhone 17 Pro Max">iPhone 17 Pro Max - ₹1,59,900</option>
-                                <option value="iPhone 17 Pro">iPhone 17 Pro - ₹1,34,900</option>
-                                <option value="iPhone 17 Air">iPhone 17 Air - ₹1,09,900</option>
-                                <option value="iPhone 17">iPhone 17 - ₹79,900</option>
-                                <option value="iPhone 16 Pro Max">iPhone 16 Pro Max - ₹1,44,900</option>
-                                <option value="iPhone 16 Pro">iPhone 16 Pro - ₹1,19,900</option>
-                                <option value="iPhone 16 Plus">iPhone 16 Plus - ₹99,900</option>
-                                <option value="iPhone 16">iPhone 16 - ₹79,900</option>
-                                <option value="iPhone 15 Pro Max">iPhone 15 Pro Max - ₹1,29,900</option>
-                                <option value="iPhone 15 Pro">iPhone 15 Pro - ₹1,09,900</option>
-                                <option value="iPhone 15 Plus">iPhone 15 Plus - ₹89,900</option>
-                                <option value="iPhone 15">iPhone 15 - ₹69,900</option>
-                                <option value="iPhone 14 Pro Max">iPhone 14 Pro Max - ₹99,900</option>
-                                <option value="iPhone 14 Pro">iPhone 14 Pro - ₹84,900</option>
-                                <option value="iPhone 14 Plus">iPhone 14 Plus - ₹79,900</option>
-                                <option value="iPhone 14">iPhone 14 - ₹59,900</option>
-                                <option value="iPhone 13 Pro Max">iPhone 13 Pro Max - ₹89,900</option>
-                                <option value="iPhone 13 Pro">iPhone 13 Pro - ₹79,900</option>
-                                <option value="iPhone 13">iPhone 13 - ₹49,900</option>
-                                <option value="iPhone SE 3rd Gen">iPhone SE (3rd Gen) - ₹39,900</option>
-                                <option value="iPhone SE 2nd Gen">iPhone SE (2nd Gen) - ₹29,900</option>
                             </select>
                         </div>
                         <div class="input-group">
