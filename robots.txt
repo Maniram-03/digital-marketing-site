@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maniram-03.github.io/digital-marketing-site/sitemap.xml
